@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Show Table with Input Fields</title>
+<style>
+    /* Optional CSS for styling the table and loading message */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    #loadingContainer {
+        display: none;
+    }
+    input[type="text"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+</head>
+<body>
+
+<button id="showTableBtn">Show Table</button>
+
+<div id="loadingContainer">
+    <div id="initData" style="display: none;">Initializing data...</div>
+    <div id="fetchData" style="display: none;">Fetching data...</div>
+</div>
+
+<div id="tableContainer" style="display: none;">
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Tender Number</th>
+                <th>Tender Name</th>
+                <th>Tender Date</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Table body rows will be added dynamically using JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.getElementById('showTableBtn').addEventListener('click', function() {
+    var tableContainer = document.getElementById('tableContainer');
+    var loadingContainer = document.getElementById('loadingContainer');
+    var initData = document.getElementById('initData');
+    var fetchData = document.getElementById('fetchData');
+
+    // Show initializing data message
+    initData.style.display = 'block';
+
+    // Hide the button and show loading container
+    this.style.display = 'none';
+    loadingContainer.style.display = 'block';
+
+    // Simulate a delay for initializing data
+    setTimeout(function() {
+        initData.style.display = 'none';
+        fetchData.style.display = 'block';
+
+        // Simulate a delay for fetching data
+        setTimeout(function() {
+            fetchData.style.display = 'none';
+            tableContainer.style.display = 'block';
+
+            var tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Clear any existing rows
+
+            var data = [
+                { srNo: 1, tenderNumber: 100121, tenderName: 'cake', tenderDate: '1/4/2024' },
+                { srNo: 2, tenderNumber: 100122, tenderName: 'farm', tenderDate: '2/4/2024' },
+                { srNo: 3, tenderNumber: 100123, tenderName: 'belt', tenderDate: '3/4/2024' },
+                // Add more data objects for the remaining rows
+                // { srNo: ..., tenderNumber: ..., tenderName: ..., tenderDate: ... },
+                // { srNo: ..., tenderNumber: ..., tenderName: ..., tenderDate: ... },
+                // ...
+                { srNo: 20, tenderNumber: 100140, tenderName: 'xyz', tenderDate: '20/4/2024' }
+            ];
+
+            data.forEach(function(item) {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell();
+                var cell2 = row.insertCell();
+                var cell3 = row.insertCell();
+                var cell4 = row.insertCell();
+                cell1.innerHTML = item.srNo;
+                cell2.innerHTML = item.tenderNumber;
+                cell3.innerHTML = item.tenderName;
+                cell4.innerHTML = item.tenderDate;
+            });
+        }, 3000); // 3 seconds delay for fetching data
+    }, 2000); // 2 seconds delay for initializing data
+});
+</script>
+
+</body>
+</html>

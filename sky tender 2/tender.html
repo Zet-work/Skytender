@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenders page</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="ten">
+        <nav>
+            <li><a href="index.html">Tenders</a></li>
+        </nav>
+    </div>
+
+
+
+    <div class="image"><img src="image/tenders search.jpg" width="500px" height="300px"></div>
+
+    <div class="text">
+        <p>A tender is essentially an invitation to bid or a formal offer to provide goods or services
+            at a specified price. It is a structured process through which organizations and government
+            bodies procure goods, services, or construction projects. Tenders are often utilized when
+            the value of the project exceeds a certain threshold or when transparency and fair
+            competition are desired.</p>
+    </div>
+    <!-- <div class="button">Tenders Data</div> -->
+    <!-- <button class="button" onclick="myFunction()">Click me</button> -->
+
+
+    <button id="showTableBtn" class="button">Show Table</button>
+
+<div id="loadingContainer">
+    <div id="initData" style="display: none;">Initializing data...</div>
+    <div id="fetchData" style="display: none;">Fetching data...</div>
+    
+    <div id="fetchData" class="lds-dual-ring"></div>
+
+</div>
+
+<div id="tableContainer" style="display: none;">
+    <table>
+        <thead>
+            <tr>
+                <th>Sr. No</th>
+                <th>Tender Number</th>
+                <th>Tender Name</th>
+                <th>Tender Date</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Table body rows will be added dynamically using JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.getElementById('showTableBtn').addEventListener('click', function() {
+    var tableContainer = document.getElementById('tableContainer');
+    var loadingContainer = document.getElementById('loadingContainer');
+    var initData = document.getElementById('initData');
+    var fetchData = document.getElementById('fetchData');
+
+    // Show initializing data message
+    initData.style.display = 'block';
+
+    // Hide the button and show loading container
+    this.style.display = 'none';
+    loadingContainer.style.display = 'block';
+
+    // Simulate a delay for initializing data
+    setTimeout(function() {
+        initData.style.display = 'none';
+        fetchData.style.display = 'block';
+
+        // Simulate a delay for fetching data
+        setTimeout(function() {
+            fetchData.style.display = 'none';
+            tableContainer.style.display = 'block';
+
+            var tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Clear any existing rows
+
+            var data = [
+                { srNo: 1, tenderNumber: 842737, tenderName: 'Alteration of gaseous line', tenderDate: '2024-03-15' },
+                { srNo: 2, tenderNumber: 136913, tenderName: 'contractor for proposed Construction of Net-zero energy', tenderDate: '2024-03-15' },
+                { srNo: 3, tenderNumber: 255693, tenderName: ' Biannual works contract for the work of systematic cleaning of supply ', tenderDate: '2024-03-15' },
+                // Add more data objects for the remaining rows
+                // { srNo: ..., tenderNumber: ..., tenderName: ..., tenderDate: ... },
+                // { srNo: ..., tenderNumber: ..., tenderName: ..., tenderDate: ... },
+                // ...
+                { srNo: 4, tenderNumber: 100140, tenderName: 'Compostable Bags for various Hospitals of BMC Tender ', tenderDate: '2024-03-15' }
+            ];
+
+            data.forEach(function(item) {
+                var row = tableBody.insertRow();
+                var cell1 = row.insertCell();
+                var cell2 = row.insertCell();
+                var cell3 = row.insertCell();
+                var cell4 = row.insertCell();
+                cell1.innerHTML = item.srNo;
+                cell2.innerHTML = item.tenderNumber;
+                cell3.innerHTML = item.tenderName;
+                cell4.innerHTML = item.tenderDate;
+            });
+        }, 3000); // 3 seconds delay for fetching data
+    }, 2000); // 2 seconds delay for initializing data
+});
+</script>
+
+
+
+    <!-- <div class="table">
+        <table>
+            <tr>
+                Sr.No
+                <td>
+                    Name
+                </td>
+            </tr>
+
+
+        </table> -->
+
+
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
